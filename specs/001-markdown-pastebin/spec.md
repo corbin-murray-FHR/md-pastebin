@@ -3,7 +3,17 @@
 **Feature Branch**: `001-markdown-pastebin`  
 **Created**: 2025-11-18  
 **Status**: Draft  
-**Input**: User description: "I want to create a next.js (tailwindcss) application that focuses on being a markdown 'pastebin'. The client-only application should allow for users to paste their markdown and create a shareable link. The idea is that people can collaborate and quickly share markdown (rendered) for quick and easy reading"
+**Input**: User description: "I want to create a web application that focuses on being a markdown 'pastebin'. The client-only application should allow for users to paste their markdown and create a shareable link. The idea is that people can collaborate and quickly share markdown (rendered) for quick and easy reading"
+
+## Clarifications
+
+### Session 2025-11-18
+
+- Q: Aesthetic direction? → A: Playful/Organic (Option B) - "Creative and expressive" with rounded corners and soft shadows.
+- Q: Theme support? → A: Simple Dark/Light toggle (User Request).
+- Q: Tech Stack? → A: React + Vite (Option A).
+- Q: Routing Strategy? → A: Hash-based (Option A) - Ensures reliable client-side routing on static hosts.
+- Q: Styling Strategy? → A: Tailwind CSS v4.1 + shadcn/ui (Option A) - "Playful/Organic" customization on top of a robust accessible foundation.
 
 ## User Scenarios & Testing _(mandatory)_
 
@@ -52,10 +62,10 @@ A collaborator opens a shared link, makes revisions, and creates an updated link
 
 ### Edge Cases
 
-- What happens when pasted markdown exceeds the supported character limit for a shareable link, triggering guidance on trimming or segmenting the content?
-- How does the experience handle a recipient opening an expired, tampered, or malformed link so they receive a clear message and can request a fresh copy?
-- What occurs when a user loses connectivity mid-creation, ensuring their draft content is not lost unexpectedly?
-- How are embedded assets (images, external references) surfaced when the external resource is unavailable or blocked?
+- **Content Length Limits**: When pasted markdown exceeds the supported character limit (~6-7k compressed), the system triggers guidance on trimming or segmenting the content (Covered by FR-006).
+- **Invalid Links**: When a recipient opens a tampered or malformed link, the system displays a clear error message and allows them to create a new note (Covered by FR-010).
+- **Data Loss Prevention**: When a user loses connectivity or reloads, their in-progress draft is preserved locally (Covered by FR-008).
+- **External Assets**: Embedded assets (images, external references) rely on the viewer's browser and network access; broken images display the browser's default placeholder.
 
 ## Requirements _(mandatory)_
 
@@ -69,6 +79,12 @@ A collaborator opens a shared link, makes revisions, and creates an updated link
 - **FR-006**: The experience MUST alert users when the compressed markdown payload approaches or exceeds the safe link size threshold (~6-7k characters), offering guidance on reducing or segmenting content.
 - **FR-007**: Collaborators MUST be able to switch from a shared view into an editable view, modify the markdown, and create a fresh link representing their revision without altering the original link.
 - **FR-008**: The experience MUST retain unsent edits locally during the current session so accidental navigation or reload does not erase work in progress.
+- **FR-009**: The experience MUST provide a simple, accessible toggle to switch between light and dark themes.
+- **FR-010**: The experience MUST display a user-friendly error message when a shared link is invalid, malformed, or cannot be decompressed, allowing the user to navigate back to the home page.
+
+### Non-Functional Requirements
+
+- **NFR-001**: The User Interface MUST adhere to a "Playful/Organic" aesthetic (rounded corners, soft shadows, expressive typography) rather than a standard corporate/utilitarian look.
 
 ### Key Entities _(include if feature involves data)_
 
@@ -80,6 +96,7 @@ A collaborator opens a shared link, makes revisions, and creates an updated link
 - Shareable links store content client-side because no always-on server is available; therefore link length practical limits apply.
 - Collaboration is asynchronous: recipients create new links with their changes rather than editing the original link in place.
 - Only modern browsers with JavaScript enabled are in scope for both authors and recipients.
+- External assets (images, etc.) are rendered as standard HTML elements; availability depends on the user's network and the hosting server. No special proxying is provided.
 
 ### Technical Decisions
 
@@ -95,6 +112,21 @@ To reliably support documents up to 20,000 characters while using URL-based stor
 #### Rationale
 
 Uncompressed Base64 encoding would limit safe document size to ~2-5k characters, falling short of the 20k character goal. Compression is essential to meet capacity requirements within browser and platform URL length constraints.
+
+#### Tech Stack (Option A - Selected 2025-11-18)
+
+- **Framework**: React + Vite
+- **Rationale**: Industry standard for SPAs, robust ecosystem for markdown rendering and UI interactions, excellent performance for client-side logic.
+
+#### Routing Strategy (Option A - Selected 2025-11-18)
+
+- **Strategy**: Hash-based routing (`/#/share/...`)
+- **Rationale**: Ensures compatibility with zero-config static hosting (GitHub Pages, S3) by avoiding server-side 404s on refresh.
+
+#### Styling Strategy (Option A - Selected 2025-11-18)
+
+- **Library**: Tailwind CSS v4.1 + shadcn/ui
+- **Rationale**: Provides a modern, accessible component foundation (shadcn) that is easily customizable via utility classes (Tailwind) to achieve the desired "Playful/Organic" aesthetic without reinventing core UI patterns.
 
 ## Success Criteria _(mandatory)_
 
