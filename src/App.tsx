@@ -4,7 +4,6 @@ import { Layout } from './components/Layout';
 import { Editor } from './pages/Editor';
 import { Viewer } from './pages/Viewer';
 import { Toaster } from './components/ui/sonner';
-import './App.css';
 
 function AnimatedRoutes() {
   const location = useLocation();
