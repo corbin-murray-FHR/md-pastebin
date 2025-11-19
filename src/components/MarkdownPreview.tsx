@@ -1,5 +1,8 @@
 import Markdown from "react-markdown";
+import rehypeSlug from "rehype-slug";
 import { cn } from "@/lib/utils";
+import { useCallback, useMemo } from "react";
+import { toast } from "sonner";
 
 interface MarkdownPreviewProps {
   content: string;
@@ -7,6 +10,49 @@ interface MarkdownPreviewProps {
 }
 
 export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
+  const handleAnchorClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      const href = event.currentTarget.getAttribute("href");
+
+      if (!href) return;
+
+      // Handle internal anchor links
+      if (href.startsWith("#")) {
+        event.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      // Handle external links - open in new tab
+      else if (href.startsWith("http://") || href.startsWith("https://")) {
+        event.preventDefault();
+        window.open(href, "_blank", "noopener,noreferrer");
+      }
+      // Handle mailto links - allow default behavior
+      else if (href.startsWith("mailto:")) {
+        return;
+      }
+      // Handle relative links - block and warn
+      else {
+        event.preventDefault();
+        toast.warning("Relative links are not supported in the preview.");
+      }
+    },
+    []
+  );
+
+  const components = useMemo(
+    () => ({
+      a: ({ node, ...props }: any) => (
+        <a {...props} onClick={handleAnchorClick} />
+      ),
+    }),
+    [handleAnchorClick]
+  );
+
   return (
     <div
       className={cn(
@@ -49,7 +95,9 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
         className
       )}
     >
-      <Markdown>{content}</Markdown>
+      <Markdown rehypePlugins={[rehypeSlug]} components={components}>
+        {content}
+      </Markdown>
     </div>
   );
 }
