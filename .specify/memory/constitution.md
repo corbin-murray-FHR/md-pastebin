@@ -1,50 +1,104 @@
-# [PROJECT_NAME] Constitution
+<!--
+Sync Impact Report:
+- Version change: 1.0.0 -> 1.1.0
+- Modified principles: Added Principle VI (Git Hygiene)
+- Added sections: None
+- Templates requiring updates: None
+-->
+
+# md-pastebin Constitution
+
 <!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
+### I. Security & Robustness
+
 <!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
+
+Code MUST be secure by default and robust against failures. Input validation is mandatory for all external data. The application must handle errors gracefully without crashing or exposing sensitive information.
+
 <!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### [PRINCIPLE_2_NAME]
+### II. Test-Friendly
+
 <!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
+
+Architecture MUST support easy testing. Components should be isolated and testable. Logic should be separated from presentation where possible to facilitate unit testing.
+
 <!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### [PRINCIPLE_3_NAME]
+### III. Technology Stack
+
 <!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
+
+The following technology stack is MANDATORY and NON-NEGOTIABLE:
+
+- **Component Library**: shadcn/ui (with Tailwind CSS v4.1)
+- **Framework**: React + TypeScript with Vite
+- **Animations**: Motion
+- **Compression**: lz-string
+
 <!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-### [PRINCIPLE_4_NAME]
+### IV. Component Strategy
+
 <!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
+
+shadcn/ui is the PRIMARY and PREFERRED component library.
+
+- **Check Registry First**: ALWAYS check the shadcn registry for an existing component before building a custom one.
+- **No Reinvention**: NEVER build a custom component if a shadcn equivalent exists.
+- **Standardization**: Use standard shadcn patterns and theming.
+
 <!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-### [PRINCIPLE_5_NAME]
+### V. Corporate Network Compliance
+
 <!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
+
+The development environment MUST be configured to work within the corporate network (Zscaler proxy).
+
+- **Proxy Configuration**: Shell environments MUST have proxy settings configured before running network-dependent commands (especially shadcn CLI).
+- **Certificate Handling**: NODE_TLS_REJECT_UNAUTHORIZED="0" may be required for tools that do not use the system certificate store.
+
+### VI. Git Hygiene
+
+Commits MUST be atomic and accompanied by strong, descriptive messages.
+
+- **Atomic Commits**: Group related changes. Avoid monolithic "wip" commits.
+- **Message Format**: Use conventional commits (e.g., eat:, ix:, docs:,
+  efactor:) or clear imperative statements.
+- **Context**: Explain _why_ a change was made, not just _what_ changed.
+
 <!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-## [SECTION_2_NAME]
+## Technical Constraints
+
 <!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+All development must adhere strictly to the defined technology stack. No new libraries or frameworks should be introduced without explicit justification and amendment to this constitution.
 
-## [SECTION_3_NAME]
+## Development Workflow
+
 <!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Proxy Setup
+
+Before running pnpm dlx shadcn@latest ... or similar commands, ensure your shell is configured:
+
+`powershell
+$env:HTTPS_PROXY="http://127.0.0.1:9000";
+$env:HTTPS_PROXY="http://127.0.0.1:9000";
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0";
+`
 
 ## Governance
+
 <!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This Constitution supersedes all other project documentation and practices. Amendments require a version bump and explicit documentation in the Sync Impact Report. All Pull Requests must be verified against these principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+**Version**: 1.1.0 | **Ratified**: 2025-11-19 | **Last Amended**: 2025-11-19
+
 <!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
