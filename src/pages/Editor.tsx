@@ -5,8 +5,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { MarkdownPreview } from "@/components/MarkdownPreview";
 import { compressionService } from "@/lib/compression";
 import { storageService } from "@/lib/storage";
+import type { LayoutMode } from "@/lib/types";
 import { toast } from "sonner";
-import { Share2, AlertTriangle } from "lucide-react";
+import {
+  Share2,
+  AlertTriangle,
+  PanelLeftClose,
+  PanelLeftOpen,
+  PanelRightClose,
+  PanelRightOpen,
+} from "lucide-react";
 
 const MAX_SAFE_LENGTH = 7000;
 
@@ -14,6 +22,7 @@ export function Editor() {
   const location = useLocation();
   const [markdown, setMarkdown] = useState("");
   const [isWarningLength, setIsWarningLength] = useState(false);
+  const [layoutMode, setLayoutMode] = useState<LayoutMode>("split");
 
   useEffect(() => {
     const remixContent = location.state?.content;
@@ -96,29 +105,87 @@ export function Editor() {
         </div>
       )}
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium">Markdown</h3>
-          <Textarea
-            value={markdown}
-            onChange={(e) => handleMarkdownChange(e.target.value)}
-            placeholder="Type your markdown here..."
-            className="min-h-[500px] font-mono text-sm resize-y"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium">Preview</h3>
-          <div className="min-h-[500px] border rounded-md p-6 bg-card overflow-auto">
-            {markdown ? (
-              <MarkdownPreview content={markdown} />
-            ) : (
-              <p className="text-muted-foreground text-sm">
-                Preview will appear here...
-              </p>
-            )}
+      <div
+        className={`grid gap-4 ${
+          layoutMode === "split" ? "lg:grid-cols-2" : "grid-cols-1"
+        }`}
+      >
+        {(layoutMode === "split" || layoutMode === "editor") && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Editor</h3>
+              <div className="flex gap-2">
+                {layoutMode === "editor" && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setLayoutMode("split")}
+                    title="Expand Viewer"
+                    className="hidden lg:flex"
+                  >
+                    <PanelRightOpen className="h-4 w-4" />
+                    <span className="sr-only">Expand Viewer</span>
+                  </Button>
+                )}
+                {layoutMode === "split" && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setLayoutMode("viewer")}
+                    title="Collapse Editor"
+                    className="hidden lg:flex"
+                  >
+                    <PanelLeftClose className="h-4 w-4" />
+                    <span className="sr-only">Collapse Editor</span>
+                  </Button>
+                )}
+              </div>
+            </div>
+            <Textarea
+              value={markdown}
+              onChange={(e) => handleMarkdownChange(e.target.value)}
+              placeholder="Type your markdown here..."
+              className="min-h-[500px] font-mono"
+            />
           </div>
-        </div>
+        )}
+
+        {(layoutMode === "split" || layoutMode === "viewer") && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Preview</h3>
+              <div className="flex gap-2">
+                {layoutMode === "viewer" && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setLayoutMode("split")}
+                    title="Expand Editor"
+                    className="hidden lg:flex"
+                  >
+                    <PanelLeftOpen className="h-4 w-4" />
+                    <span className="sr-only">Expand Editor</span>
+                  </Button>
+                )}
+                {layoutMode === "split" && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setLayoutMode("editor")}
+                    title="Collapse Viewer"
+                    className="hidden lg:flex"
+                  >
+                    <PanelRightClose className="h-4 w-4" />
+                    <span className="sr-only">Collapse Viewer</span>
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="rounded-md border p-4 min-h-[500px] bg-card">
+              <MarkdownPreview content={markdown} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
