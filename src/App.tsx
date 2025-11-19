@@ -1,18 +1,53 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
-import { Layout } from "./components/Layout";
-import { Editor } from "./pages/Editor";
-import { Viewer } from "./pages/Viewer";
-import { Toaster } from "./components/ui/sonner";
-import "./App.css";
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Layout } from './components/Layout';
+import { Editor } from './pages/Editor';
+import { Viewer } from './pages/Viewer';
+import { Toaster } from './components/ui/sonner';
+import './App.css';
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Editor />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/view/:content"
+          element={
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Viewer />
+            </motion.div>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   return (
     <HashRouter>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Editor />} />
-          <Route path="/view/:content" element={<Viewer />} />
-        </Routes>
+        <AnimatedRoutes />
       </Layout>
       <Toaster />
     </HashRouter>

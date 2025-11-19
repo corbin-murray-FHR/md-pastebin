@@ -64,10 +64,10 @@
 
 **Goal**: Enhance UX with animations and responsive design.
 
-- [ ] T026 [P] Add Motion animations for page transitions in `src/App.tsx`
-- [ ] T027 [P] Add Motion animations for button interactions in `src/components/ui/button.tsx`
-- [ ] T028 Implement content length warning (if > 7k chars) in `src/pages/Editor.tsx`
-- [ ] T029 Final responsive design check and adjustments in `src/styles/globals.css`
+- [x] T026 [P] Add Motion animations for page transitions in `src/App.tsx`
+- [x] T027 [P] Add Motion animations for button interactions in `src/components/ui/button.tsx`
+- [x] T028 Implement content length warning (if > 7k chars) in `src/pages/Editor.tsx`
+- [x] T029 Final responsive design check and adjustments in `src/styles/globals.css`
 
 ## Dependencies
 
