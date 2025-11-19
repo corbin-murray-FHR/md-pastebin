@@ -10,7 +10,9 @@ export function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col">
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Markdown Pastebin</h1>
+          <h1 className="text-2xl font-bold tracking-tight">
+            <span className="font-mono text-primary">md</span> pastebin
+          </h1>
           <ThemeToggle />
         </div>
       </header>
