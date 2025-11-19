@@ -18,11 +18,11 @@
 **Goal**: Implement core services and routing infrastructure.
 **Blocking**: Must complete Phase 1.
 
-- [ ] T006 [P] Implement `ICompressionService` using lz-string in `src/lib/compression.ts`
-- [ ] T007 [P] Implement `IStorageService` for drafts and theme in `src/lib/storage.ts`
-- [ ] T008 [P] Implement `utils.ts` for shadcn (cn helper) in `src/lib/utils.ts`
-- [ ] T009 Setup HashRouter and basic routes in `src/App.tsx`
-- [ ] T010 Create main Layout component (Header, Main, Footer) in `src/components/Layout.tsx`
+- [x] T006 [P] Implement `ICompressionService` using lz-string in `src/lib/compression.ts`
+- [x] T007 [P] Implement `IStorageService` for drafts and theme in `src/lib/storage.ts`
+- [x] T008 [P] Implement `utils.ts` for shadcn (cn helper) in `src/lib/utils.ts`
+- [x] T009 Setup HashRouter and basic routes in `src/App.tsx`
+- [x] T010 Create main Layout component (Header, Main, Footer) in `src/components/Layout.tsx`
 
 ## Phase 3: User Story 1 - Generate Shareable Markdown View
 
