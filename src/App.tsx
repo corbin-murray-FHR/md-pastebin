@@ -1,8 +1,8 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Editor } from './pages/Editor';
-import { Viewer } from './pages/Viewer';
-import './App.css';
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Editor } from "./pages/Editor";
+import { Viewer } from "./pages/Viewer";
+import "./App.css";
 
 function App() {
   return (
@@ -18,4 +18,3 @@ function App() {
 }
 
 export default App;
-

@@ -10,8 +10,8 @@ export interface IStorageService {
 }
 
 const STORAGE_KEYS = {
-  DRAFT: 'md-pastebin-draft',
-  THEME: 'md-pastebin-theme',
+  DRAFT: "md-pastebin-draft",
+  THEME: "md-pastebin-theme",
 } as const;
 
 class StorageService implements IStorageService {
@@ -23,7 +23,7 @@ class StorageService implements IStorageService {
     try {
       localStorage.setItem(STORAGE_KEYS.DRAFT, content);
     } catch (error) {
-      console.error('Failed to save draft:', error);
+      console.error("Failed to save draft:", error);
     }
   }
 
@@ -35,7 +35,7 @@ class StorageService implements IStorageService {
     try {
       return localStorage.getItem(STORAGE_KEYS.DRAFT);
     } catch (error) {
-      console.error('Failed to get draft:', error);
+      console.error("Failed to get draft:", error);
       return null;
     }
   }
@@ -47,7 +47,7 @@ class StorageService implements IStorageService {
     try {
       localStorage.removeItem(STORAGE_KEYS.DRAFT);
     } catch (error) {
-      console.error('Failed to clear draft:', error);
+      console.error("Failed to clear draft:", error);
     }
   }
 
@@ -59,7 +59,7 @@ class StorageService implements IStorageService {
     try {
       return localStorage.getItem(STORAGE_KEYS.THEME);
     } catch (error) {
-      console.error('Failed to get theme:', error);
+      console.error("Failed to get theme:", error);
       return null;
     }
   }
@@ -72,7 +72,7 @@ class StorageService implements IStorageService {
     try {
       localStorage.setItem(STORAGE_KEYS.THEME, theme);
     } catch (error) {
-      console.error('Failed to set theme:', error);
+      console.error("Failed to set theme:", error);
     }
   }
 }

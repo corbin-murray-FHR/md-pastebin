@@ -1,4 +1,4 @@
-import LZString from 'lz-string';
+import LZString from "lz-string";
 
 /**
  * Service for compressing and decompressing markdown content
