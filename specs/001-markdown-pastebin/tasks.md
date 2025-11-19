@@ -7,10 +7,10 @@
 
 **Goal**: Initialize the project with the required tech stack and structure.
 
-- [ ] T001 Initialize Vite project with React + TypeScript in `.`
-- [ ] T002 Install dependencies (react-router-dom, lz-string, motion, clsx, tailwind-merge, lucide-react, react-markdown) in `package.json`
-- [ ] T003 [P] Initialize shadcn/ui following official Vite guide (https://ui.shadcn.com/docs/installation/vite) with Tailwind v4.1 and violet theme
-- [ ] T004 [P] Create project directory structure (components, lib, pages, styles) in `src/`
+- [x] T001 Initialize Vite project with React + TypeScript in `.`
+- [x] T002 Install dependencies (react-router-dom, lz-string, motion, clsx, tailwind-merge, lucide-react, react-markdown) in `package.json`
+- [x] T003 [P] Initialize shadcn/ui following official Vite guide (https://ui.shadcn.com/docs/installation/vite) with Tailwind v4.1 and violet theme
+- [x] T004 [P] Create project directory structure (components, lib, pages, styles) in `src/`
 - [ ] T005 [P] Setup GitHub Pages deployment workflow in `.github/workflows/deploy.yml`
 
 ## Phase 2: Foundational
