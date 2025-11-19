@@ -44,11 +44,11 @@
 **Priority**: P2
 **Independent Test**: Open shared link, verify content renders correctly.
 
-- [ ] T018 [US2] Create `Viewer` page component structure in `src/pages/Viewer.tsx`
-- [ ] T019 [US2] Implement URL hash parsing and decompression in `src/pages/Viewer.tsx`
-- [ ] T020 [US2] Render decompressed content using `MarkdownPreview` in `src/pages/Viewer.tsx`
-- [ ] T021 [US2] Implement Error State component using shadcn `Alert` in `src/components/ErrorState.tsx`
-- [ ] T022 [US2] Implement "Copy Raw Markdown" button using shadcn `Button` in `src/pages/Viewer.tsx`
+- [x] T018 [US2] Create `Viewer` page component structure in `src/pages/Viewer.tsx`
+- [x] T019 [US2] Implement URL hash parsing and decompression in `src/pages/Viewer.tsx`
+- [x] T020 [US2] Render decompressed content using `MarkdownPreview` in `src/pages/Viewer.tsx`
+- [x] T021 [US2] Implement Error State component using shadcn `Alert` in `src/components/ErrorState.tsx`
+- [x] T022 [US2] Implement "Copy Raw Markdown" button using shadcn `Button` in `src/pages/Viewer.tsx`
 
 ## Phase 5: User Story 3 - Remix Shared Markdown
 
