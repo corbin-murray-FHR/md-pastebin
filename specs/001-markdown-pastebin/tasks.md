@@ -30,13 +30,13 @@
 **Priority**: P1
 **Independent Test**: Open app, type markdown, click share, verify link is copied.
 
-- [ ] T011 [US1] Create `ThemeToggle` component using shadcn `Button` and `DropdownMenu` in `src/components/ThemeToggle.tsx`
-- [ ] T012 [US1] Create `Editor` page component structure in `src/pages/Editor.tsx`
-- [ ] T013 [US1] Implement markdown input using shadcn `Textarea` with auto-resize in `src/pages/Editor.tsx`
-- [ ] T014 [US1] Implement live markdown preview using `react-markdown` in `src/components/MarkdownPreview.tsx`
-- [ ] T015 [US1] Implement "Share" button logic using shadcn `Button` in `src/pages/Editor.tsx`
-- [ ] T016 [US1] Implement "Copy to Clipboard" toast notification using shadcn `Sonner` or `Toast` in `src/pages/Editor.tsx`
-- [ ] T017 [US1] Integrate `StorageService` to save draft on change in `src/pages/Editor.tsx`
+- [x] T011 [US1] Create `ThemeToggle` component using shadcn `Button` and `DropdownMenu` in `src/components/ThemeToggle.tsx`
+- [x] T012 [US1] Create `Editor` page component structure in `src/pages/Editor.tsx`
+- [x] T013 [US1] Implement markdown input using shadcn `Textarea` with auto-resize in `src/pages/Editor.tsx`
+- [x] T014 [US1] Implement live markdown preview using `react-markdown` in `src/components/MarkdownPreview.tsx`
+- [x] T015 [US1] Implement "Share" button logic using shadcn `Button` in `src/pages/Editor.tsx`
+- [x] T016 [US1] Implement "Copy to Clipboard" toast notification using shadcn `Sonner` or `Toast` in `src/pages/Editor.tsx`
+- [x] T017 [US1] Integrate `StorageService` to save draft on change in `src/pages/Editor.tsx`
 
 ## Phase 4: User Story 2 - Read Shared Markdown
 

@@ -2,6 +2,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Editor } from "./pages/Editor";
 import { Viewer } from "./pages/Viewer";
+import { Toaster } from "./components/ui/sonner";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/view/:content" element={<Viewer />} />
         </Routes>
       </Layout>
+      <Toaster />
     </HashRouter>
   );
 }
