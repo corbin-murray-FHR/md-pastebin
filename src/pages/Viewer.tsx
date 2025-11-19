@@ -1,14 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { MarkdownPreview } from '@/components/MarkdownPreview';
 import { ErrorState } from '@/components/ErrorState';
 import { compressionService } from '@/lib/compression';
 import { toast } from 'sonner';
-import { Copy } from 'lucide-react';
+import { Copy, Edit } from 'lucide-react';
 
 export function Viewer() {
   const { content: encodedContent } = useParams<{ content: string }>();
+  const navigate = useNavigate();
   const [markdown, setMarkdown] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,6 +45,11 @@ export function Viewer() {
     });
   };
 
+  const handleRemix = () => {
+    if (!markdown) return;
+    navigate('/', { state: { content: markdown } });
+  };
+
   if (error) {
     return (
       <div className="space-y-4">
@@ -66,10 +72,16 @@ export function Viewer() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">Shared Content</h2>
-        <Button onClick={handleCopyRaw} variant="outline">
-          <Copy className="mr-2 h-4 w-4" />
-          Copy Raw Markdown
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={handleRemix} variant="default">
+            <Edit className="mr-2 h-4 w-4" />
+            Remix
+          </Button>
+          <Button onClick={handleCopyRaw} variant="outline">
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Raw
+          </Button>
+        </div>
       </div>
 
       <div className="border rounded-md p-6 bg-background">

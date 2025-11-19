@@ -56,9 +56,9 @@
 **Priority**: P3
 **Independent Test**: Click "Remix" on shared view, verify editor opens with content.
 
-- [ ] T023 [US3] Implement "Remix" button using shadcn `Button` in `src/pages/Viewer.tsx`
-- [ ] T024 [US3] Handle navigation to Editor with pre-filled content in `src/pages/Editor.tsx`
-- [ ] T025 [US3] Ensure Remix action doesn't overwrite existing local draft without warning in `src/pages/Editor.tsx`
+- [x] T023 [US3] Implement "Remix" button using shadcn `Button` in `src/pages/Viewer.tsx`
+- [x] T024 [US3] Handle navigation to Editor with pre-filled content in `src/pages/Editor.tsx`
+- [x] T025 [US3] Ensure Remix action doesn't overwrite existing local draft without warning in `src/pages/Editor.tsx`
 
 ## Phase 6: Polish & Cross-Cutting
 
