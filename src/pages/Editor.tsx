@@ -1,18 +1,18 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { MarkdownPreview } from '@/components/MarkdownPreview';
-import { compressionService } from '@/lib/compression';
-import { storageService } from '@/lib/storage';
-import { toast } from 'sonner';
-import { Share2, AlertTriangle } from 'lucide-react';
+import { useState, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { MarkdownPreview } from "@/components/MarkdownPreview";
+import { compressionService } from "@/lib/compression";
+import { storageService } from "@/lib/storage";
+import { toast } from "sonner";
+import { Share2, AlertTriangle } from "lucide-react";
 
 const MAX_SAFE_LENGTH = 7000;
 
 export function Editor() {
   const location = useLocation();
-  const [markdown, setMarkdown] = useState('');
+  const [markdown, setMarkdown] = useState("");
   const [isWarningLength, setIsWarningLength] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function Editor() {
       const existingDraft = storageService.getDraft();
       if (existingDraft && existingDraft !== remixContent) {
         const shouldOverwrite = window.confirm(
-          'You have an existing draft. Do you want to replace it with the remixed content?'
+          "You have an existing draft. Do you want to replace it with the remixed content?"
         );
         if (shouldOverwrite) {
           setMarkdown(remixContent);
@@ -52,22 +52,27 @@ export function Editor() {
 
   const handleShare = useCallback(() => {
     if (!markdown.trim()) {
-      toast.error('Cannot share empty content');
+      toast.error("Cannot share empty content");
       return;
     }
 
     try {
       const compressed = compressionService.compress(markdown);
-      const shareUrl = `${window.location.origin}${window.location.pathname}#/view/${encodeURIComponent(compressed)}`;
-      
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        toast.success('Link copied to clipboard!');
-      }).catch(() => {
-        toast.error('Failed to copy link');
-      });
+      const shareUrl = `${window.location.origin}${
+        window.location.pathname
+      }#/view/${encodeURIComponent(compressed)}`;
+
+      navigator.clipboard
+        .writeText(shareUrl)
+        .then(() => {
+          toast.success("Link copied to clipboard!");
+        })
+        .catch(() => {
+          toast.error("Failed to copy link");
+        });
     } catch (error) {
-      console.error('Share error:', error);
-      toast.error('Failed to generate share link');
+      console.error("Share error:", error);
+      toast.error("Failed to generate share link");
     }
   }, [markdown]);
 
@@ -85,7 +90,8 @@ export function Editor() {
         <div className="flex items-center gap-2 p-3 text-sm text-amber-600 bg-amber-50 dark:bg-amber-950 dark:text-amber-400 rounded-md border border-amber-200 dark:border-amber-800">
           <AlertTriangle className="h-4 w-4 flex-shrink-0" />
           <p>
-            Content is {markdown.length} characters. URLs may become unreliable above {MAX_SAFE_LENGTH} characters.
+            Content is {markdown.length} characters. URLs may become unreliable
+            above {MAX_SAFE_LENGTH} characters.
           </p>
         </div>
       )}
@@ -103,11 +109,13 @@ export function Editor() {
 
         <div className="space-y-2">
           <h3 className="text-sm font-medium">Preview</h3>
-          <div className="min-h-[500px] border rounded-md p-4 bg-background overflow-auto">
+          <div className="min-h-[500px] border rounded-md p-6 bg-card overflow-auto">
             {markdown ? (
               <MarkdownPreview content={markdown} />
             ) : (
-              <p className="text-muted-foreground text-sm">Preview will appear here...</p>
+              <p className="text-muted-foreground text-sm">
+                Preview will appear here...
+              </p>
             )}
           </div>
         </div>
@@ -115,4 +123,3 @@ export function Editor() {
     </div>
   );
 }
-

@@ -1,11 +1,11 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { MarkdownPreview } from '@/components/MarkdownPreview';
-import { ErrorState } from '@/components/ErrorState';
-import { compressionService } from '@/lib/compression';
-import { toast } from 'sonner';
-import { Copy, Edit } from 'lucide-react';
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { MarkdownPreview } from "@/components/MarkdownPreview";
+import { ErrorState } from "@/components/ErrorState";
+import { compressionService } from "@/lib/compression";
+import { toast } from "sonner";
+import { Copy, Edit } from "lucide-react";
 
 export function Viewer() {
   const { content: encodedContent } = useParams<{ content: string }>();
@@ -15,39 +15,42 @@ export function Viewer() {
 
   useEffect(() => {
     if (!encodedContent) {
-      setError('No content provided in URL');
+      setError("No content provided in URL");
       return;
     }
 
     try {
       const decodedContent = decodeURIComponent(encodedContent);
       const decompressed = compressionService.decompress(decodedContent);
-      
+
       if (!decompressed) {
-        setError('Failed to decompress content. The link may be corrupted.');
+        setError("Failed to decompress content. The link may be corrupted.");
         return;
       }
 
       setMarkdown(decompressed);
     } catch (err) {
-      console.error('Decompression error:', err);
-      setError('Failed to load content. The link may be invalid or corrupted.');
+      console.error("Decompression error:", err);
+      setError("Failed to load content. The link may be invalid or corrupted.");
     }
   }, [encodedContent]);
 
   const handleCopyRaw = () => {
     if (!markdown) return;
 
-    navigator.clipboard.writeText(markdown).then(() => {
-      toast.success('Raw markdown copied to clipboard!');
-    }).catch(() => {
-      toast.error('Failed to copy markdown');
-    });
+    navigator.clipboard
+      .writeText(markdown)
+      .then(() => {
+        toast.success("Raw markdown copied to clipboard!");
+      })
+      .catch(() => {
+        toast.error("Failed to copy markdown");
+      });
   };
 
   const handleRemix = () => {
     if (!markdown) return;
-    navigate('/', { state: { content: markdown } });
+    navigate("/", { state: { content: markdown } });
   };
 
   if (error) {
@@ -84,7 +87,7 @@ export function Viewer() {
         </div>
       </div>
 
-      <div className="border rounded-md p-6 bg-background">
+      <div className="border rounded-lg p-8 bg-card shadow-sm">
         <MarkdownPreview content={markdown} />
       </div>
     </div>
