@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-- Version change: 1.0.0 -> 1.1.0
-- Modified principles: Added Principle VI (Git Hygiene)
-- Added sections: None
+- Version change: 1.1.0 -> 1.2.0
+- Modified principles: Added Principle VII (Verification Standards)
+- Added sections: VII. Verification Standards
 - Templates requiring updates: None
 -->
 
@@ -73,6 +73,13 @@ Commits MUST be atomic and accompanied by strong, descriptive messages.
 
 <!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
+### VII. Verification Standards
+
+Features are considered complete ONLY when they pass all builds and tests.
+
+- **Build Success**: The project must build without errors.
+- **Test Pass**: All existing tests must pass. No feature shall be marked as done if the test suite is failing.
+
 ## Technical Constraints
 
 <!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
@@ -99,6 +106,6 @@ $env:NODE_TLS_REJECT_UNAUTHORIZED="0";
 
 This Constitution supersedes all other project documentation and practices. Amendments require a version bump and explicit documentation in the Sync Impact Report. All Pull Requests must be verified against these principles.
 
-**Version**: 1.1.0 | **Ratified**: 2025-11-19 | **Last Amended**: 2025-11-19
+**Version**: 1.2.0 | **Ratified**: 2025-11-19 | **Last Amended**: 2025-11-20
 
 <!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
