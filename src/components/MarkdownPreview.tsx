@@ -3,6 +3,7 @@ import rehypeSlug from "rehype-slug";
 import { cn } from "@/lib/utils";
 import { useCallback, useMemo } from "react";
 import { toast } from "sonner";
+import { CodeBlock } from "./CodeBlock";
 
 interface MarkdownPreviewProps {
   content: string;
@@ -49,6 +50,7 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
       a: ({ node, ...props }: any) => (
         <a {...props} onClick={handleAnchorClick} />
       ),
+      code: CodeBlock,
     }),
     [handleAnchorClick]
   );

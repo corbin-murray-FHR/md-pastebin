@@ -23,11 +23,12 @@
 
 ### 2. Accessibility & Themes
 
-**Decision**: Use `a11y-light` and `a11y-dark` themes from `react-syntax-highlighter`.
+**Decision**: Use `oneLight` (Prism) and `a11y-dark` (Prism) themes from `react-syntax-highlighter`.
 **Rationale**:
 
-- Explicitly designed to meet accessibility standards.
-- Provides high contrast for both light and dark modes, satisfying FR-006.
+- `a11y-light` is not available in the Prism build of `react-syntax-highlighter`.
+- `oneLight` provides good contrast and is a standard light theme.
+- `a11y-dark` is explicitly designed for accessibility in dark mode.
 
 ### 3. Copy Button Implementation
 
