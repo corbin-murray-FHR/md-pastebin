@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useEffect, useState } from "react";
+import { type ComponentPropsWithoutRef, useEffect, useState } from "react";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   oneLight,
