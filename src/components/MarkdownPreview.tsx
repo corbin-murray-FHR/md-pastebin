@@ -58,11 +58,13 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
   return (
     <div
       className={cn(
-        "prose prose-slate dark:prose-invert max-w-none text-left",
+        "prose prose-slate dark:prose-invert mx-auto",
+        // Layout constraint
+        "max-w-[70ch]",
         // Base text styling
         "prose-base md:prose-lg",
         // Headings - clear hierarchy
-        "prose-headings:font-bold prose-headings:tracking-tight",
+        "prose-headings:font-bold prose-headings:tracking-tight prose-headings:leading-tight",
         "prose-h1:text-4xl prose-h1:mb-4 prose-h1:mt-8 prose-h1:border-b prose-h1:pb-2",
         "prose-h2:text-3xl prose-h2:mb-3 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2",
         "prose-h3:text-2xl prose-h3:mb-2 prose-h3:mt-6",
