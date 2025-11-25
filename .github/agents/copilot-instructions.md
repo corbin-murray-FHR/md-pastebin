@@ -13,6 +13,8 @@ Auto-generated from all feature plans. Last updated: 2025-11-18
 - N/A (Client-side rendering) (004-syntax-highlighting)
 - TypeScript 5.x + React 18, Tailwind CSS 4.1, shadcn/ui (005-a11y-typography)
 - LocalStorage (existing) (005-a11y-typography)
+- TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new) (006-table-rendering-bug)
+- N/A (client-side rendering only) (006-table-rendering-bug)
 
 - TypeScript 5.x (React 18+, Vite 5+) + React, Vite, lz-string, shadcn/ui, tailwindcss v4.1, motion (001-markdown-pastebin)
 
@@ -33,9 +35,9 @@ npm test; npm run lint
 TypeScript 5.x (React 18+, Vite 5+): Follow standard conventions
 
 ## Recent Changes
+- 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
+- 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
 - 005-a11y-typography: Added TypeScript 5.x + React 18, Tailwind CSS 4.1, shadcn/ui
-- 004-syntax-highlighting: Added TypeScript 5.9.3, React 19.2.0 + `react-markdown` (~10.1.0), `tailwindcss` (~4.1.17), `shadcn/ui` components
-- 003-collapsible-panels: Added TypeScript 5.x + React 19, shadcn/ui, Tailwind CSS v4.1, Motion, lz-string
 
 
 <!-- MANUAL ADDITIONS START -->
