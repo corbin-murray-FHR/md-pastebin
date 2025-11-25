@@ -79,7 +79,8 @@ export function CodeBlock({
           size="icon"
           className={cn(
             "absolute right-2 top-2 h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100",
-            "bg-background/50 hover:bg-background/80 backdrop-blur-sm"
+            "bg-background/50 hover:bg-background/80 backdrop-blur-sm",
+            "hover:cursor-pointer"
           )}
           onClick={handleCopy}
           aria-label="Copy code"
