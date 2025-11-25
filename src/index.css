@@ -124,3 +124,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+/* Fix line number alignment in code blocks and add dot separator */
+.linenumber {
+  min-width: 2.5em !important;
+  padding-right: 1em !important;
+  text-align: right !important;
+}
+
+.linenumber::after {
+  content: ".";
+}

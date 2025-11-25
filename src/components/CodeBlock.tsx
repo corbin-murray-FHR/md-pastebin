@@ -96,6 +96,14 @@ export function CodeBlock({
           language={language}
           PreTag="div"
           showLineNumbers={true}
+          lineNumberStyle={{
+            minWidth: "2.5em",
+            paddingRight: "1em",
+            textAlign: "right",
+            marginLeft: 0,
+          }}
+          wrapLines={true}
+          lineProps={{ style: { display: "flex" } }}
           {...props}
         >
           {String(children).replace(/\n$/, "")}
