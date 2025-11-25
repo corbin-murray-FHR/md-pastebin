@@ -15,6 +15,8 @@ Auto-generated from all feature plans. Last updated: 2025-11-18
 - LocalStorage (existing) (005-a11y-typography)
 - TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new) (006-table-rendering-bug)
 - N/A (client-side rendering only) (006-table-rendering-bug)
+- TypeScript 5.x with React 18+ + React, shadcn/ui, Tailwind CSS v4.1, lucide-react (icons) (008-word-wrap-toggle)
+- localStorage (via existing storageService) (008-word-wrap-toggle)
 
 - TypeScript 5.x (React 18+, Vite 5+) + React, Vite, lz-string, shadcn/ui, tailwindcss v4.1, motion (001-markdown-pastebin)
 
@@ -35,8 +37,8 @@ npm test; npm run lint
 TypeScript 5.x (React 18+, Vite 5+): Follow standard conventions
 
 ## Recent Changes
+- 008-word-wrap-toggle: Added TypeScript 5.x with React 18+ + React, shadcn/ui, Tailwind CSS v4.1, lucide-react (icons)
 - 007-url-compression: Added [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
-- 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
 - 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
 
 

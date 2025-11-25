@@ -14,6 +14,7 @@ import {
   PanelLeftOpen,
   PanelRightClose,
   PanelRightOpen,
+  WrapText,
 } from "lucide-react";
 
 const MAX_SAFE_LENGTH = 10000;
@@ -23,6 +24,9 @@ export function Editor() {
   const [markdown, setMarkdown] = useState("");
   const [isWarningLength, setIsWarningLength] = useState(false);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>("split");
+  const [wordWrap, setWordWrap] = useState<boolean>(() => {
+    return storageService.getWordWrap() ?? true;
+  });
 
   useEffect(() => {
     const remixContent = location.state?.content;
@@ -83,6 +87,14 @@ export function Editor() {
     }
   }, [markdown]);
 
+  const handleWordWrapToggle = useCallback(() => {
+    setWordWrap((prev) => {
+      const newValue = !prev;
+      storageService.setWordWrap(newValue);
+      return newValue;
+    });
+  }, []);
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -113,6 +125,19 @@ export function Editor() {
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Editor</h3>
               <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleWordWrapToggle}
+                  title={wordWrap ? "Disable word wrap" : "Enable word wrap"}
+                  aria-pressed={wordWrap}
+                  className={wordWrap ? "bg-accent" : ""}
+                >
+                  <WrapText className="h-4 w-4" />
+                  <span className="sr-only">
+                    {wordWrap ? "Disable word wrap" : "Enable word wrap"}
+                  </span>
+                </Button>
                 {layoutMode === "editor" && (
                   <Button
                     variant="ghost"
@@ -143,7 +168,11 @@ export function Editor() {
               value={markdown}
               onChange={(e) => handleMarkdownChange(e.target.value)}
               placeholder="Type your markdown here..."
-              className="min-h-[500px] font-mono"
+              className={`min-h-[500px] font-mono ${
+                wordWrap
+                  ? "whitespace-pre-wrap"
+                  : "whitespace-pre overflow-x-auto"
+              }`}
             />
           </div>
         )}

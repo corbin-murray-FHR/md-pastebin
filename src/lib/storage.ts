@@ -7,11 +7,14 @@ export interface IStorageService {
   clearDraft(): void;
   getTheme(): string | null;
   setTheme(theme: string): void;
+  getWordWrap(): boolean | null;
+  setWordWrap(enabled: boolean): void;
 }
 
 const STORAGE_KEYS = {
   DRAFT: "md-pastebin-draft",
   THEME: "md-pastebin-theme",
+  WORD_WRAP: "md-pastebin-word-wrap",
 } as const;
 
 class StorageService implements IStorageService {
@@ -73,6 +76,33 @@ class StorageService implements IStorageService {
       localStorage.setItem(STORAGE_KEYS.THEME, theme);
     } catch (error) {
       console.error("Failed to set theme:", error);
+    }
+  }
+
+  /**
+   * Get the saved word wrap preference
+   * @returns true if word wrap is enabled, false if disabled, null if not set
+   */
+  getWordWrap(): boolean | null {
+    try {
+      const value = localStorage.getItem(STORAGE_KEYS.WORD_WRAP);
+      if (value === null) return null;
+      return value === "true";
+    } catch (error) {
+      console.error("Failed to get word wrap preference:", error);
+      return null;
+    }
+  }
+
+  /**
+   * Save word wrap preference
+   * @param enabled - Whether word wrap should be enabled
+   */
+  setWordWrap(enabled: boolean): void {
+    try {
+      localStorage.setItem(STORAGE_KEYS.WORD_WRAP, String(enabled));
+    } catch (error) {
+      console.error("Failed to set word wrap preference:", error);
     }
   }
 }
