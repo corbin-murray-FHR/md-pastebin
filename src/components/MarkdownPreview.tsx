@@ -1,5 +1,6 @@
 import Markdown from "react-markdown";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import { useCallback, useMemo } from "react";
 import { toast } from "sonner";
@@ -51,6 +52,11 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
         <a {...props} onClick={handleAnchorClick} />
       ),
       code: CodeBlock,
+      table: ({ node, ...props }: any) => (
+        <div className="overflow-x-auto my-4">
+          <table {...props} />
+        </div>
+      ),
     }),
     [handleAnchorClick]
   );
@@ -99,7 +105,11 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
         className
       )}
     >
-      <Markdown rehypePlugins={[rehypeSlug]} components={components}>
+      <Markdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeSlug]}
+        components={components}
+      >
         {content}
       </Markdown>
     </div>
