@@ -80,7 +80,7 @@ export function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
         // Paragraphs
         "prose-p:leading-relaxed prose-p:mb-4",
         // Links
-        "prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline",
+        "prose-a:text-primary prose-a:no-underline prose-a:font-medium prose-a:hover:underline",
         // Lists
         "prose-ul:my-4 prose-ol:my-4",
         "prose-li:my-1",
