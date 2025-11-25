@@ -105,6 +105,12 @@ export function CodeBlock({
           }}
           wrapLines={true}
           lineProps={{ style: { display: "flex" } }}
+          customStyle={{
+            padding: "0.5em 1em",
+            margin: 0,
+            fontSize: "0.875em",
+            lineHeight: 1.4,
+          }}
           {...props}
         >
           {String(children).replace(/\n$/, "")}
