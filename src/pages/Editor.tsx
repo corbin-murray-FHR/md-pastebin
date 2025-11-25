@@ -16,7 +16,7 @@ import {
   PanelRightOpen,
 } from "lucide-react";
 
-const MAX_SAFE_LENGTH = 7000;
+const MAX_SAFE_LENGTH = 10000;
 
 export function Editor() {
   const location = useLocation();
@@ -69,7 +69,7 @@ export function Editor() {
       const compressed = compressionService.compress(markdown);
       const shareUrl = `${window.location.origin}${
         window.location.pathname
-      }#/view/${encodeURIComponent(compressed)}`;
+      }#/view/${compressed}`;
 
       navigator.clipboard
         .writeText(shareUrl)

@@ -10,21 +10,29 @@ export interface ICompressionService {
 
 class CompressionService implements ICompressionService {
   /**
-   * Compress text using LZ-based compression
+   * Compress text using LZ-based compression with URI encoding
    * @param text - The text to compress
-   * @returns Base64 encoded compressed string
+   * @returns URI-encoded compressed string
    */
   compress(text: string): string {
-    return LZString.compressToBase64(text);
+    return LZString.compressToEncodedURIComponent(text);
   }
 
   /**
-   * Decompress a previously compressed string
+   * Decompress a previously compressed string with dual-format support
    * @param compressed - The compressed string to decompress
    * @returns The original text or null if decompression fails
    */
   decompress(compressed: string): string | null {
-    return LZString.decompressFromBase64(compressed);
+    // Try new URI-encoded format first
+    let result = LZString.decompressFromEncodedURIComponent(compressed);
+    
+    // Fallback to legacy Base64 format for backward compatibility
+    if (!result) {
+      result = LZString.decompressFromBase64(compressed);
+    }
+    
+    return result;
   }
 }
 

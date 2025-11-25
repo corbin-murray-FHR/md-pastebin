@@ -20,8 +20,7 @@ export function Viewer() {
     }
 
     try {
-      const decodedContent = decodeURIComponent(encodedContent);
-      const decompressed = compressionService.decompress(decodedContent);
+      const decompressed = compressionService.decompress(encodedContent);
 
       if (!decompressed) {
         setError("Failed to decompress content. The link may be corrupted.");
