@@ -67,9 +67,7 @@ export function Editor() {
 
     try {
       const compressed = compressionService.compress(markdown);
-      const shareUrl = `${window.location.origin}${
-        window.location.pathname
-      }#/view/${compressed}`;
+      const shareUrl = `${window.location.origin}${window.location.pathname}#/view/${compressed}`;
 
       navigator.clipboard
         .writeText(shareUrl)

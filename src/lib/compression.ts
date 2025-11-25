@@ -26,12 +26,12 @@ class CompressionService implements ICompressionService {
   decompress(compressed: string): string | null {
     // Try new URI-encoded format first
     let result = LZString.decompressFromEncodedURIComponent(compressed);
-    
+
     // Fallback to legacy Base64 format for backward compatibility
     if (!result) {
       result = LZString.decompressFromBase64(compressed);
     }
-    
+
     return result;
   }
 }

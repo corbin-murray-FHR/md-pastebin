@@ -35,9 +35,9 @@ npm test; npm run lint
 TypeScript 5.x (React 18+, Vite 5+): Follow standard conventions
 
 ## Recent Changes
+- 007-url-compression: Added [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
 - 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
 - 006-table-rendering-bug: Added TypeScript 5.9, React 19.2 + react-markdown v10.1.0, remark-gfm v4.x (new)
-- 005-a11y-typography: Added TypeScript 5.x + React 18, Tailwind CSS 4.1, shadcn/ui
 
 
 <!-- MANUAL ADDITIONS START -->
